@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import {
     createFtpMcpServer,
@@ -125,6 +126,30 @@ test('configuration can be loaded from a JSON file', () => {
         JSON.stringify({ hosts: [{ host: 'loaded', hostname: 'ftp.example.com', local_root: localRoot }] })
     );
     assert.equal('ftp.example.com', loadHostConfigurations(configurationFile).get('loaded').hostname);
+});
+
+test('CLI starts through the symlink created by npm', async () => {
+    let localRoot = mkdtempSync(path.join(os.tmpdir(), 'ftpmcp-'));
+    let configurationFile = path.join(localRoot, 'hosts.json');
+    let executable = path.join(localRoot, 'ftpmcp');
+    writeFileSync(
+        configurationFile,
+        JSON.stringify({ hosts: [{ host: 'loaded', hostname: 'ftp.example.com', local_root: localRoot }] })
+    );
+    symlinkSync(path.resolve('src/ftpmcp.js'), executable);
+
+    let client = new Client({ name: 'ftpmcp-cli-test', version: '1.0.0' });
+    let transport = new StdioClientTransport({
+        command: executable,
+        env: { ...process.env, FTP_CONFIG_FILE: configurationFile }
+    });
+    await client.connect(transport);
+    let result = await client.listTools();
+    assert.equal(
+        true,
+        result.tools.some(tool => tool.name === 'list_hosts')
+    );
+    await client.close();
 });
 
 test('remote paths cannot escape the configured root', () => {
