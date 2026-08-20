@@ -1,0 +1,39 @@
+{
+    "name": "@vielhuber/ftpmcp",
+    "version": "1.0.0",
+    "description": "A focused MCP server for safe FTP and FTPS file operations.",
+    "type": "module",
+    "bin": {
+        "ftpmcp": "src/ftpmcp.js"
+    },
+    "scripts": {
+        "test": "node --test",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "files": [
+        "src",
+        "README.md",
+        "LICENSE.md"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/vielhuber/ftpmcp.git"
+    },
+    "author": "David Vielhuber <david@vielhuber.de>",
+    "engines": {
+        "node": ">=22"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.30.0",
+        "basic-ftp": "^6.2.0",
+        "zod": "^4.4.3"
+    },
+    "devDependencies": {
+        "prettier": "^3.9.6"
+    }
+}

@@ -1,0 +1,27 @@
+name: CI
+
+on:
+    push:
+        tags:
+            - 'v*'
+            - '[0-9]*'
+
+permissions:
+    contents: read
+    id-token: write
+
+jobs:
+    test-and-publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+            - uses: actions/setup-node@v6
+              with:
+                  node-version-file: .nvmrc
+                  registry-url: https://registry.npmjs.org
+            - run: npm install
+            - run: npm run format:check
+            - run: npm test
+            - name: Verify version
+              run: test "$(node -p "require('./package.json').version")" = "${GITHUB_REF_NAME#v}"
+            - run: npm publish --access public --provenance
