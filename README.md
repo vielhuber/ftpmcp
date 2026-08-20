@@ -1,4 +1,4 @@
-# ftpmcp
+# 🗃️ftpmcp🗃️
 
 A focused [Model Context Protocol](https://modelcontextprotocol.io/) server for FTP and FTPS file operations.
 It deliberately does not implement SFTP: SSH-based transfers belong in an SSH MCP instead of duplicating credentials and transport logic here.

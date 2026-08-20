@@ -1,6 +1,6 @@
 {
     "name": "@vielhuber/ftpmcp",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A focused MCP server for safe FTP and FTPS file operations.",
     "type": "module",
     "bin": {
