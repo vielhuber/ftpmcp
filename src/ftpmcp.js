@@ -120,7 +120,11 @@ export function resolveRemotePath(configuration, suppliedPath = '/') {
         throw new Error('Remote path contains an invalid null byte.');
     }
     let resolvedPath = posix.resolve(configuration.remoteRoot, input.replace(/^\/+/, '') || '.');
-    if (resolvedPath !== configuration.remoteRoot && !resolvedPath.startsWith(`${configuration.remoteRoot}/`)) {
+    if (
+        configuration.remoteRoot !== '/' &&
+        resolvedPath !== configuration.remoteRoot &&
+        !resolvedPath.startsWith(`${configuration.remoteRoot}/`)
+    ) {
         throw new Error('Remote path is outside the configured root.');
     }
     return resolvedPath;

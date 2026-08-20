@@ -158,6 +158,11 @@ test('remote paths cannot escape the configured root', () => {
     assert.throws(() => resolveRemotePath(configuration, '../../private'), /outside the configured root/);
 });
 
+test('remote paths can descend below a root configured as slash', () => {
+    let configuration = createTestHostConfigurations({ root: '/' }).get('primary');
+    assert.equal('/website/wp-config.php', resolveRemotePath(configuration, '/website/wp-config.php'));
+});
+
 test('local paths accept absolute shared paths and reject escapes', () => {
     let configuration = createTestHostConfigurations().get('primary');
     let localFile = path.join(configuration.localRoot, 'document.txt');
