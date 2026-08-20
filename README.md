@@ -1,3 +1,11 @@
+[![build status](https://github.com/vielhuber/ftpmcp/actions/workflows/ci.yml/badge.svg)](https://github.com/vielhuber/ftpmcp/actions)
+[![GitHub Tag](https://img.shields.io/github/v/tag/vielhuber/ftpmcp)](https://github.com/vielhuber/ftpmcp/tags)
+[![License](https://img.shields.io/github/license/vielhuber/ftpmcp)](https://github.com/vielhuber/ftpmcp/blob/main/LICENSE.md)
+[![Last Commit](https://img.shields.io/github/last-commit/vielhuber/ftpmcp)](https://github.com/vielhuber/ftpmcp/commits)
+[![node version](https://img.shields.io/node/v/@vielhuber/ftpmcp)](https://www.npmjs.com/package/@vielhuber/ftpmcp)
+[![npm Version](https://img.shields.io/npm/v/@vielhuber/ftpmcp)](https://www.npmjs.com/package/@vielhuber/ftpmcp)
+[![npm Downloads](https://img.shields.io/npm/dt/@vielhuber/ftpmcp)](https://www.npmjs.com/package/@vielhuber/ftpmcp)
+
 # 🗃️ftpmcp🗃️
 
 A focused [Model Context Protocol](https://modelcontextprotocol.io/) server for FTP and FTPS file operations.
